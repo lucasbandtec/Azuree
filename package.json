@@ -4,20 +4,25 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./app.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lucasbandtec/Azuree.git"
+    "url": "git+https://github.com/lucasbandtec/Lucas.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/lucasbandtec/Azuree/issues"
+    "url": "https://github.com/lucasbandtec/Lucas/issues"
   },
-  "homepage": "https://github.com/lucasbandtec/Azuree#readme",
+  "homepage": "https://github.com/lucasbandtec/Lucas#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "nodemon": "^1.18.5",
+    "path": "^0.12.7",
+    "tedious": "^3.0.1"
   }
 }
