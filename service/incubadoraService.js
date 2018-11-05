@@ -81,8 +81,80 @@ module.exports = class incubadoraService {
 }
 
 
+// Adiciona uma incubadora
+postIncubadora(incubadora){
+    return new Promise((resolve, reject)=>{
+
+        const connection = new Connection(this.config);
+
+        connection.on('connect', function (err) {
+            
+            let codigo = incubadora.codigo;
+            let status = incubadora.status;
+            console.log(codigo);
+            
+            let request = new Request("INSERT into incubadora  values ( @status @local);", function (err, linhas) {
+                if (err) {
+                    reject(err);
+                } else {
+                    console.log(`Registro salvo com sucesso. Linhas afetadas: ${linhas}`);
+                    resolve(true);
+                }
+                connection.close()
+            });
+
+            request.addParameter('status', TYPES.Bit, status);
+            request.addParameter('local', TYPES.Varchar, local);
+
+            connection.execSql(request);
 
 
+
+    });
+
+    });
+}
+
+getIncubadoraPorId(idIncubadora){
+    return new Promise((resolve, reject) => {
+
+        const connection = new Connection(this.config);
+
+        connection.on('connect', function (err) {
+            // If no error, then good to go...
+            var id = idIncubadora;
+            const request = new Request("select * from incubadora where idIncubadora = @id; ", function (err, rowCount) {
+                if (err) {
+                    console.log(err)
+                } else {
+                    console.log(rowCount + ' rows')
+                }
+
+                connection.close()
+            })
+            request.addParameter('id', TYPES.Decimal, id);
+            request.on('row', function (columns) {
+
+                var incubadora = new Incubadora();
+
+                incubadora.idIncubadora = columns[0].value;
+                incubadora.status = columns[1].value;
+                incubadora.local = columns[2].value;
+
+                resolve(incubadora);
+
+
+            });
+
+            // In SQL Server 2000 you may need: connection.execSqlBatch(request);
+            connection.execSql(request)
+
+        }
+        );
+
+
+    });
+}
 
 
 

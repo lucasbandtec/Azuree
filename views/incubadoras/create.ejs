@@ -1,17 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <form>
-        <label>Localização: </label>
-            <input id="localizacao" type="text">
-            <br>
-            <button type="submit">Cadastrar</button>
+
+<!-- Inclui o layout do cabeçário-->
+<%- include('../headerLayout.ejs')%>
+<h2>Nova Incubadora</h2>
+<hr/>
+
+
+    <form action="/incubadoras/create" method="POST">
+        
+            <label for="local">Local: </label>
+                <input type="text" name="local">
+       
+            <button type="submit" >Cadastrar</button>
+        
     </form>
-</body>
-</html>
+
+
+   
+
+<script>
+    $('#incubadoras').addClass('active');
+</script>
+
+<!-- Inclui o layout de rodapé-->
+<%- include('../footerLayout.ejs')%>
